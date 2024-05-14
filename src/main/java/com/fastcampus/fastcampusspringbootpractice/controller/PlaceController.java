@@ -11,7 +11,7 @@ public class PlaceController {
 
     @GetMapping("/")
     public String place() {
-        return "place/index";
+        return "places";
     }
 
     @GetMapping("/{placeId}")
