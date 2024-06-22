@@ -10,4 +10,7 @@ class FastcampusSpringBootPracticeApplicationTests {
     void contextLoads() {
     }
 
+
+
+
 }
