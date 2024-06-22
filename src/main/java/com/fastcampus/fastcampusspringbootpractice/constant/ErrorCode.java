@@ -19,8 +19,8 @@ public enum ErrorCode {
     SPRING_INTERNAL_SERVER_ERROR( 200001, ErrorCategory.SERVER,  "Spring-detected Internal Server Error"),
     ;
 
-    private final int code;
-    private final ErrorCategory category;
+    private final Integer code;
+    private final ErrorCategory errorCategory;
     private final String message;
 
     public String getMessage(Exception e) {
@@ -34,20 +34,21 @@ public enum ErrorCode {
     }
 
     public boolean isClientError() {
-        return ErrorCategory.CLIENT == this.category;
+        return this.getErrorCategory() == ErrorCategory.CLIENT;
     }
 
     public boolean isServerError() {
-        return ErrorCategory.SERVER == this.category;
+        return this.getErrorCategory() == ErrorCategory.SERVER;
     }
 
+    @Override
     public String toString() {
-        return String.format("%s %s %s", this.getCode(), this.getCategory(), this.getMessage());
+        return String.format("%s (%d)", name(), this.getCode() );
     }
 
     public enum ErrorCategory {
+        NORMAL,
         CLIENT,
         SERVER,
-        NORMAL
     }
 }

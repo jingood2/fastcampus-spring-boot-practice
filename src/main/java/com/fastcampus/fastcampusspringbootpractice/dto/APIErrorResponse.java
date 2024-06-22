@@ -13,8 +13,8 @@ public class APIErrorResponse {
     private final Integer errorCode;
     private final String message;
 
-    public static APIErrorResponse of(Boolean success, Integer errorCode, String message) {
-        return new APIErrorResponse(success, errorCode, message);
+    public static APIErrorResponse of(Boolean success, ErrorCode errorCode, String message) {
+        return new APIErrorResponse(success, errorCode.getCode(), message);
     }
 
     public static APIErrorResponse of(Boolean success, ErrorCode errorCode) {

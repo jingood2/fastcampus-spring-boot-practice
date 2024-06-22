@@ -1,5 +1,8 @@
 package com.fastcampus.fastcampusspringbootpractice.api;
 
+import com.fastcampus.fastcampusspringbootpractice.constant.PlaceType;
+import com.fastcampus.fastcampusspringbootpractice.dto.APIDataResponse;
+import com.fastcampus.fastcampusspringbootpractice.dto.PlaceDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,13 +12,32 @@ import java.util.List;
 public class APIPlaceController {
 
     @GetMapping("/places")
-    public List<String> getPlaces() {
-        return List.of("place1", "place2");
+    public APIDataResponse<List<PlaceDTO>> getPlaces() {
+
+        return APIDataResponse.of(List.of(PlaceDTO.of(
+                PlaceType.COMMON,
+                "배드민턴장",
+                "강남구",
+                "010-2222-2222",
+                30,
+                "신장개업"
+        )));
     }
 
     @PostMapping("/places")
     public Boolean createPlace(){
         return true;
+    }
+    @GetMapping("/places/{placeId}")
+    public APIDataResponse<PlaceDTO> getPlace(@PathVariable Integer placeId){
+        return APIDataResponse.of(PlaceDTO.of(
+                PlaceType.COMMON,
+                "배드민턴장",
+                "강남구",
+                "010-2222-2222",
+                30,
+                "신장개업"
+        ));
     }
 
     @PutMapping("/places/{placeId}")
